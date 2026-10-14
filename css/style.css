@@ -195,7 +195,7 @@ td.num { font-variant-numeric: tabular-nums; text-align: right; }
 .timeline p { color: var(--muted); }
 
 /* Contact */
-.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .copy-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .copy-btn { font: inherit; font-family: var(--font-mono); font-size: 0.74rem; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 6px; padding: 3px 9px; cursor: pointer; opacity: .8; }
 .copy-btn:hover { opacity: 1; }
