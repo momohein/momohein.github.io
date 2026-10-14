@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="85 35 380 410" width="380" height="410">
+  <title>momo.dev mark</title>
+  <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M112,92 C150,105 180,125 205,138 C260,130 310,130 355,128 C385,100 410,75 432,58 C440,110 442,170 440,225 C436,280 402,328 355,380 C330,408 310,424 294,424 C276,424 254,406 230,382 C182,332 140,285 132,225 C126,170 114,130 112,92 Z" stroke="#7A4A1A" stroke-width="20"/>
+    <path transform="translate(294,300) scale(1.3) translate(-298,-342)" d="M298,336 C290,300 240,294 238,326 C237,342 252,358 298,404 C344,358 359,342 358,326 C356,294 306,300 298,336 Z" fill="#E8853A" stroke="#E8853A" stroke-width="6"/>
+  </g>
+</svg>

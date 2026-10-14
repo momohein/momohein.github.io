@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Homie Case Study · Momo Hein</title>
+<meta name="description" content="How I designed, built, tested and deployed Homie, a Spring Boot app for shared houses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+<script>
+/* set theme before first paint: saved choice, otherwise the device setting */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<meta name="theme-color" content="#7A4A1A">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="momo.dev home"><svg class="brand-logo" viewBox="460 100 1152 270" role="img" aria-label="momo.dev" xmlns="http://www.w3.org/2000/svg"><path d="M511.484375 330.0H537.32421875V265.400390625C537.32421875 249.9169921875 547.2705078125 241.5087890625 558.9599609375 241.5087890625C570.4443359375 241.5087890625 578.6474609375 249.19921875 578.6474609375 260.9912109375V330.0H603.76953125V263.5546875C603.76953125 250.634765625 611.8701171875 241.5087890625 624.9951171875 241.5087890625C636.0693359375 241.5087890625 645.0927734375 247.8662109375 645.0927734375 262.2216796875V330.0H671.03515625V258.5302734375C671.03515625 233.1005859375 655.244140625 219.5654296875 634.736328125 219.5654296875C618.9453125 219.5654296875 606.025390625 227.5634765625 600.283203125 240.0732421875C595.771484375 227.666015625 583.7744140625 219.5654296875 569.111328125 219.5654296875C555.4736328125 219.5654296875 543.06640625 226.5380859375 536.50390625 240.4833984375V221.71875H511.484375Z" fill="currentColor"/><path d="M740.1998046875 332.4609375C772.089453125 332.4609375 793.62265625 309.5947265625 793.62265625 275.9619140625C793.62265625 242.3291015625 772.089453125 219.2578125 740.1998046875 219.2578125C708.31015625 219.2578125 686.776953125 242.3291015625 686.776953125 275.9619140625C686.776953125 309.5947265625 708.31015625 332.4609375 740.1998046875 332.4609375ZM740.1998046875 310.8251953125C723.4859375 310.8251953125 712.9244140625 297.59765625 712.9244140625 275.9619140625C712.9244140625 254.2236328125 723.5884765625 240.8935546875 740.1998046875 240.8935546875C756.70859375 240.8935546875 767.37265625 254.326171875 767.37265625 275.9619140625C767.37265625 297.4951171875 756.8111328125 310.8251953125 740.1998046875 310.8251953125Z" fill="currentColor"/><path d="M809.364453125 330.0H835.204296875V265.400390625C835.204296875 249.9169921875 845.1505859375 241.5087890625 856.8400390625 241.5087890625C868.3244140625 241.5087890625 876.5275390625 249.19921875 876.5275390625 260.9912109375V330.0H901.649609375V263.5546875C901.649609375 250.634765625 909.7501953125 241.5087890625 922.8751953125 241.5087890625C933.9494140625 241.5087890625 942.9728515625 247.8662109375 942.9728515625 262.2216796875V330.0H968.915234375V258.5302734375C968.915234375 233.1005859375 953.12421875 219.5654296875 932.61640625 219.5654296875C916.825390625 219.5654296875 903.90546875 227.5634765625 898.16328125 240.0732421875C893.6515625 227.666015625 881.6544921875 219.5654296875 866.99140625 219.5654296875C853.3537109375 219.5654296875 840.946484375 226.5380859375 834.383984375 240.4833984375V221.71875H809.364453125Z" fill="currentColor"/><path d="M1038.0798828124998 332.4609375C1069.9695312499998 332.4609375 1091.5027343749998 309.5947265625 1091.5027343749998 275.9619140625C1091.5027343749998 242.3291015625 1069.9695312499998 219.2578125 1038.0798828124998 219.2578125C1006.1902343749999 219.2578125 984.6570312499999 242.3291015625 984.6570312499999 275.9619140625C984.6570312499999 309.5947265625 1006.1902343749999 332.4609375 1038.0798828124998 332.4609375ZM1038.0798828124998 310.8251953125C1021.3660156249999 310.8251953125 1010.8044921874999 297.59765625 1010.8044921874999 275.9619140625C1010.8044921874999 254.2236328125 1021.4685546874999 240.8935546875 1038.0798828124998 240.8935546875C1054.5886718749998 240.8935546875 1065.2527343749998 254.326171875 1065.2527343749998 275.9619140625C1065.2527343749998 297.4951171875 1054.6912109374998 310.8251953125 1038.0798828124998 310.8251953125Z" fill="currentColor"/><path d="M1120.574609375 331.845703125C1129.39296875 331.845703125 1136.4681640625 324.7705078125 1136.4681640625 315.9521484375C1136.4681640625 307.1337890625 1129.39296875 300.05859375 1120.574609375 300.05859375C1111.75625 300.05859375 1104.6810546875 307.1337890625 1104.6810546875 315.9521484375C1104.6810546875 324.7705078125 1111.75625 331.845703125 1120.574609375 331.845703125Z" fill="var(--logo-accent)"/><path d="M1196.609375 332.1533203125C1210.759765625 332.1533203125 1222.654296875 326.0009765625 1229.421875 313.4912109375H1229.626953125V330.0H1255.056640625V177.216796875H1229.216796875V237.099609375H1229.01171875C1222.0390625 225.205078125 1210.4521484375 219.5654296875 1196.404296875 219.5654296875C1168.6162109375 219.5654296875 1149.7490234375 242.431640625 1149.7490234375 275.7568359375C1149.7490234375 309.4921875 1168.30859375 332.1533203125 1196.609375 332.1533203125ZM1202.6591796875 310.517578125C1186.6630859375 310.517578125 1175.896484375 298.212890625 1175.896484375 275.7568359375C1175.896484375 253.4033203125 1186.6630859375 240.99609375 1202.6591796875 240.99609375C1219.578125 240.99609375 1230.65234375 254.736328125 1230.65234375 275.7568359375C1230.65234375 296.8798828125 1219.578125 310.517578125 1202.6591796875 310.517578125Z" fill="var(--logo-accent)"/><path d="M1323.70859375 332.4609375C1349.0357421875 332.4609375 1369.1333984375 317.7978515625 1373.2349609375 296.572265625H1349.0357421875C1346.062109375 305.80078125 1337.3462890625 312.0556640625 1324.323828125 312.0556640625C1306.8921875 312.0556640625 1296.843359375 300.263671875 1296.228125 282.626953125H1374.56796875V275.5517578125C1374.56796875 242.3291015625 1353.855078125 219.2578125 1322.683203125 219.2578125C1292.331640625 219.2578125 1270.9009765625 243.046875 1270.9009765625 275.9619140625C1270.9009765625 308.7744140625 1291.2037109375 332.4609375 1323.70859375 332.4609375ZM1296.433203125 264.78515625C1298.1763671875 249.3017578125 1308.12265625 239.765625 1323.093359375 239.765625C1338.0640625 239.765625 1348.112890625 249.3017578125 1349.753515625 264.78515625Z" fill="var(--logo-accent)"/><g transform="translate(1341.18,122.55) scale(0.4965)" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M112,92 C150,105 180,125 205,138 C260,130 310,130 355,128 C385,100 410,75 432,58 C440,110 442,170 440,225 C436,280 402,328 355,380 C330,408 310,424 294,424 C276,424 254,406 230,382 C182,332 140,285 132,225 C126,170 114,130 112,92 Z" stroke="currentColor" stroke-width="44"/><path transform="translate(294,285) scale(1.5) translate(-298,-342)" d="M298,336 C290,300 240,294 238,326 C237,342 252,358 298,404 C344,358 359,342 358,326 C356,294 306,300 298,336 Z" fill="var(--logo-accent)" stroke="var(--logo-accent)" stroke-width="6"/></g></svg></a>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <p class="crumbs"><a href="projects.html">Projects</a> / Homie</p>
+    <h1>Homie: a shared-house manager</h1>
+    <p class="lede">A Spring Boot web app that lets housemates split bills, rotate chores and keep each other informed. I designed it, built it, tested it and deployed it to the cloud.</p>
+    <div class="tags" style="margin-top:18px"><span class="tag">Java 17</span><span class="tag">Spring Boot 4</span><span class="tag">Spring Security</span><span class="tag">JPA / Hibernate</span><span class="tag">Thymeleaf</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Render</span><span class="tag">Ollama</span></div>
+    <div class="actions">
+      <a class="btn primary" href="#contact-cta">Live demo (add Render link)</a>
+      <a class="btn ghost" href="https://github.com/momohein/Homie" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats" aria-label="Homie in numbers">
+    <div><b>13</b><span>controllers</span></div>
+    <div><b>11</b><span>services</span></div>
+    <div><b>16</b><span>Thymeleaf pages</span></div>
+    <div><b>56</b><span>unit tests</span></div>
+  </div>
+
+  <div class="case">
+    <nav class="toc" aria-label="On this page">
+      <b>On this page</b>
+      <a href="#problem">The problem</a>
+      <a href="#features">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#decisions">Key decisions</a>
+      <a href="#bug">Debugging story</a>
+      <a href="#testing">Testing</a>
+      <a href="#next">What's next</a>
+    </nav>
+
+    <article class="prose">
+      <section id="problem">
+        <h2>The problem</h2>
+        <p>Shared houses run on group chats and memory. Who paid the electricity? Whose week is it to clean? Which room has bins on Thursday? Housemates often come from different countries, so notices in one language get missed.</p>
+        <p>Homie puts all of that in one place. Each house has its own members, rooms, bills and rota, so any number of houses can use the same app independently.</p>
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
+        <div class="features">
+          <div><h3>Bill splitting</h3><p>Bills split equally between current housemates. Each share is tracked and ticked off one by one, and only the person who added the bill can mark shares paid.</p></div>
+          <div><h3>Cleaning and bins rota</h3><p>Cleaning rotates weekly through members in their chosen order. Each room gets a fixed bins weekday. Both cycles start from the house's creation date.</p></div>
+          <div><h3>Reminders</h3><p>A scheduled job runs at 8am every day and notifies housemates about bills due, through an in-app bell and by email.</p></div>
+          <div><h3>Translation</h3><p>Announcements and bill descriptions can be translated on demand by a locally run Ollama model (llama3.2), with no paid API.</p></div>
+          <div><h3>Accounts and houses</h3><p>Sign up and create a house, or join one with an invite code. Profile pictures, account deletion and a forgot-password flow with expiring reset links.</p></div>
+          <div><h3>House admin</h3><p>Rename the house, add and rename rooms, and reorder the cleaning rota.</p></div>
+        </div>
+      </section>
+
+      <section id="architecture">
+        <h2>Architecture</h2>
+        <p>Homie is a layered MVC monolith. Controllers handle HTTP and pick a Thymeleaf view, services hold the business rules, and Spring Data repositories talk to PostgreSQL. DTOs carry form data so entities never bind directly to requests.</p>
+        <div class="arch" role="img" aria-label="Layered architecture: browser to Spring Security, controllers, services, repositories, then PostgreSQL. External services: Gmail SMTP, Ollama, scheduler.">
+          <div class="layers">
+            <div class="layer"><h4>Browser</h4><div class="chips"><span class="chip">16 Thymeleaf templates</span><span class="chip">/api/translate (JSON)</span></div></div>
+            <div class="layer"><h4>Security</h4><div class="chips"><span class="chip">form login</span><span class="chip">BCrypt</span><span class="chip">cookie CSRF token</span></div></div>
+            <div class="layer"><h4>Controllers</h4><div class="chips"><span class="chip">Bill</span><span class="chip">House</span><span class="chip">Schedule</span><span class="chip">Cleaning</span><span class="chip">Announcement</span><span class="chip">Notification</span><span class="chip">Profile</span><span class="chip">Auth</span><span class="chip">+5</span></div></div>
+            <div class="layer"><h4>Services</h4><div class="chips"><span class="chip">BillService</span><span class="chip">ScheduleService</span><span class="chip">NotificationService</span><span class="chip">TranslationService</span><span class="chip">EmailService</span><span class="chip">+6</span></div></div>
+            <div class="layer"><h4>Repositories</h4><div class="chips"><span class="chip">User</span><span class="chip">House</span><span class="chip">Room</span><span class="chip">Bill</span><span class="chip">BillPayment</span><span class="chip">Announcement</span><span class="chip">Notification</span></div></div>
+            <div class="layer db"><h4>PostgreSQL</h4><div class="chips"><span class="chip">Supabase</span><span class="chip">session pooler</span><span class="chip">SSL required</span></div></div>
+          </div>
+          <div class="ext">
+            <h4>Outside the app</h4>
+            <div><b>BillReminderScheduler</b><span>cron 0 0 8 * * *</span></div>
+            <div><b>Gmail SMTP</b><span>reminders and reset links</span></div>
+            <div><b>Ollama</b><span>translation over HTTP</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="deployment">
+        <h2>Deployment</h2>
+        <p>The app ships as a Docker image built in two stages: a Maven stage compiles and packages the jar, and a slim Temurin 17 JRE stage runs it with memory capped at 70% of the container. Render builds and hosts the image, and the database lives on Supabase.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Piece</th><th>Where it runs</th><th>How it's configured</th></tr></thead>
+            <tbody>
+              <tr><td>Web app</td><td>Render web service (Docker)</td><td>Port from <code>PORT</code>, falls back locally</td></tr>
+              <tr><td>Database</td><td>Supabase Postgres</td><td><code>SPRING_DATASOURCE_*</code> env vars</td></tr>
+              <tr><td>Email</td><td>Gmail SMTP, port 587</td><td>App password in <code>MAIL_APP_PASSWORD</code></td></tr>
+              <tr><td>Translation</td><td>Ollama, locally</td><td><code>OLLAMA_BASE_URL</code>, <code>OLLAMA_MODEL</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="decisions">
+        <h2>Key decisions</h2>
+        <ul>
+          <li><b>No secrets in the repo.</b> Every credential comes from an environment variable with no real default, so the app fails loudly if one is missing instead of using a leaked value.</li>
+          <li><b>Cookie-based CSRF tokens.</b> Behind Render's proxy the session cookie wasn't sticking and login POSTs failed with 403. Moving the CSRF token into a cookie fixed it without turning CSRF off.</li>
+          <li><b>Supabase session pooler.</b> Render's servers are IPv4-only and Supabase's direct connection is IPv6-only, so the app connects through the pooler.</li>
+          <li><b>Plain JDK HTTP client for Ollama.</b> Spring's HTTP helpers move between Spring Boot major versions, so <code>java.net.http.HttpClient</code> keeps translation working on Spring Boot 4.</li>
+          <li><b>Everything scoped per house.</b> Rotas, bills and deletions are all queried by house, so many houses can share one database safely.</li>
+        </ul>
+      </section>
+
+      <section id="bug">
+        <h2>Debugging story: the silent notifications</h2>
+        <p>Bill reminders weren't showing up on the bell or arriving by email, even though the query was finding the right bills and the right housemates. I added temporary logging and compared raw database values with what the UI showed until I found the real cause.</p>
+        <div class="callout">
+          <pre>ERROR: null value in column "created_at" of relation "notifications"
+violates not-null constraint</pre>
+          <p>The <code>createdDate</code> field had no column mapping, so Hibernate tried to write <code>created_date</code>. The real column is <code>created_at</code>. Every insert failed, so the code never reached the email step.</p>
+        </div>
+        <p>The fix was one annotation, <code>@Column(name = "created_at", nullable = false)</code>, which kept the Java field name so nothing else had to change. While reviewing the code I also found that deleting an account looked through every bill in the app instead of only that house's bills, and fixed it with a <code>findByHouse</code> query.</p>
+        <p class="muted">To demo reminders without waiting for 8am, I added a "Send reminders now" button that calls the same method the scheduled job uses.</p>
+      </section>
+
+      <section id="testing">
+        <h2>Testing</h2>
+        <p>The service layer is covered by 56 JUnit tests across four test classes.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Test class</th><th style="text-align:right">Tests</th><th>Covers</th></tr></thead>
+            <tbody>
+              <tr><td><code>UserServiceTest</code></td><td class="num">24</td><td>Registration, profile validation, account deletion, reset tokens</td></tr>
+              <tr><td><code>HouseServiceTest</code></td><td class="num">14</td><td>Creating and joining houses, rooms, rota order</td></tr>
+              <tr><td><code>BillServiceTest</code></td><td class="num">12</td><td>Splitting, paid toggles, creator-only permissions</td></tr>
+              <tr><td><code>NotificationServiceTest</code></td><td class="num">6</td><td>Creating, marking read, ownership checks</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="next">
+        <h2>What's next</h2>
+        <ul>
+          <li>Host Ollama somewhere Render can reach so translation works on the live site.</li>
+          <li>Add a GitHub Actions pipeline that runs the tests and builds the Docker image on every push.</li>
+          <li>Assign bins days for houses with more than seven rooms.</li>
+          <li>Add integration tests against a real Postgres container.</li>
+        </ul>
+      </section>
+
+      <section id="contact-cta" class="card">
+        <h3>Want a walkthrough?</h3>
+        <p>I'm happy to demo Homie live or talk through the design.</p>
+        <a class="more" href="contact.html">Get in touch →</a>
+      </section>
+    </article>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="homie.html">Homie</a></li><li><a href="projects.html">IT Job Hunt Tracker</a></li><li><a href="https://momohein.github.io/Week9-Github-Demo/" target="_blank" rel="noopener">Travel Explorer</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/momohein" target="_blank" rel="noopener">GitHub</a></li><li><a href="contact.html">LinkedIn (add link)</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>momohein21@gmail.com</li><li>Dublin, Ireland</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Momo Hein</span><span>Hand-built with HTML &amp; CSS</span></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

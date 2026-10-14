@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>About · Momo Hein</title>
+<meta name="description" content="About Momo Hein, computer science student in Dublin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
+<script>
+/* set theme before first paint: saved choice, otherwise the device setting */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<meta name="theme-color" content="#7A4A1A">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="momo.dev home"><svg class="brand-logo" viewBox="460 100 1152 270" role="img" aria-label="momo.dev" xmlns="http://www.w3.org/2000/svg"><path d="M511.484375 330.0H537.32421875V265.400390625C537.32421875 249.9169921875 547.2705078125 241.5087890625 558.9599609375 241.5087890625C570.4443359375 241.5087890625 578.6474609375 249.19921875 578.6474609375 260.9912109375V330.0H603.76953125V263.5546875C603.76953125 250.634765625 611.8701171875 241.5087890625 624.9951171875 241.5087890625C636.0693359375 241.5087890625 645.0927734375 247.8662109375 645.0927734375 262.2216796875V330.0H671.03515625V258.5302734375C671.03515625 233.1005859375 655.244140625 219.5654296875 634.736328125 219.5654296875C618.9453125 219.5654296875 606.025390625 227.5634765625 600.283203125 240.0732421875C595.771484375 227.666015625 583.7744140625 219.5654296875 569.111328125 219.5654296875C555.4736328125 219.5654296875 543.06640625 226.5380859375 536.50390625 240.4833984375V221.71875H511.484375Z" fill="currentColor"/><path d="M740.1998046875 332.4609375C772.089453125 332.4609375 793.62265625 309.5947265625 793.62265625 275.9619140625C793.62265625 242.3291015625 772.089453125 219.2578125 740.1998046875 219.2578125C708.31015625 219.2578125 686.776953125 242.3291015625 686.776953125 275.9619140625C686.776953125 309.5947265625 708.31015625 332.4609375 740.1998046875 332.4609375ZM740.1998046875 310.8251953125C723.4859375 310.8251953125 712.9244140625 297.59765625 712.9244140625 275.9619140625C712.9244140625 254.2236328125 723.5884765625 240.8935546875 740.1998046875 240.8935546875C756.70859375 240.8935546875 767.37265625 254.326171875 767.37265625 275.9619140625C767.37265625 297.4951171875 756.8111328125 310.8251953125 740.1998046875 310.8251953125Z" fill="currentColor"/><path d="M809.364453125 330.0H835.204296875V265.400390625C835.204296875 249.9169921875 845.1505859375 241.5087890625 856.8400390625 241.5087890625C868.3244140625 241.5087890625 876.5275390625 249.19921875 876.5275390625 260.9912109375V330.0H901.649609375V263.5546875C901.649609375 250.634765625 909.7501953125 241.5087890625 922.8751953125 241.5087890625C933.9494140625 241.5087890625 942.9728515625 247.8662109375 942.9728515625 262.2216796875V330.0H968.915234375V258.5302734375C968.915234375 233.1005859375 953.12421875 219.5654296875 932.61640625 219.5654296875C916.825390625 219.5654296875 903.90546875 227.5634765625 898.16328125 240.0732421875C893.6515625 227.666015625 881.6544921875 219.5654296875 866.99140625 219.5654296875C853.3537109375 219.5654296875 840.946484375 226.5380859375 834.383984375 240.4833984375V221.71875H809.364453125Z" fill="currentColor"/><path d="M1038.0798828124998 332.4609375C1069.9695312499998 332.4609375 1091.5027343749998 309.5947265625 1091.5027343749998 275.9619140625C1091.5027343749998 242.3291015625 1069.9695312499998 219.2578125 1038.0798828124998 219.2578125C1006.1902343749999 219.2578125 984.6570312499999 242.3291015625 984.6570312499999 275.9619140625C984.6570312499999 309.5947265625 1006.1902343749999 332.4609375 1038.0798828124998 332.4609375ZM1038.0798828124998 310.8251953125C1021.3660156249999 310.8251953125 1010.8044921874999 297.59765625 1010.8044921874999 275.9619140625C1010.8044921874999 254.2236328125 1021.4685546874999 240.8935546875 1038.0798828124998 240.8935546875C1054.5886718749998 240.8935546875 1065.2527343749998 254.326171875 1065.2527343749998 275.9619140625C1065.2527343749998 297.4951171875 1054.6912109374998 310.8251953125 1038.0798828124998 310.8251953125Z" fill="currentColor"/><path d="M1120.574609375 331.845703125C1129.39296875 331.845703125 1136.4681640625 324.7705078125 1136.4681640625 315.9521484375C1136.4681640625 307.1337890625 1129.39296875 300.05859375 1120.574609375 300.05859375C1111.75625 300.05859375 1104.6810546875 307.1337890625 1104.6810546875 315.9521484375C1104.6810546875 324.7705078125 1111.75625 331.845703125 1120.574609375 331.845703125Z" fill="var(--logo-accent)"/><path d="M1196.609375 332.1533203125C1210.759765625 332.1533203125 1222.654296875 326.0009765625 1229.421875 313.4912109375H1229.626953125V330.0H1255.056640625V177.216796875H1229.216796875V237.099609375H1229.01171875C1222.0390625 225.205078125 1210.4521484375 219.5654296875 1196.404296875 219.5654296875C1168.6162109375 219.5654296875 1149.7490234375 242.431640625 1149.7490234375 275.7568359375C1149.7490234375 309.4921875 1168.30859375 332.1533203125 1196.609375 332.1533203125ZM1202.6591796875 310.517578125C1186.6630859375 310.517578125 1175.896484375 298.212890625 1175.896484375 275.7568359375C1175.896484375 253.4033203125 1186.6630859375 240.99609375 1202.6591796875 240.99609375C1219.578125 240.99609375 1230.65234375 254.736328125 1230.65234375 275.7568359375C1230.65234375 296.8798828125 1219.578125 310.517578125 1202.6591796875 310.517578125Z" fill="var(--logo-accent)"/><path d="M1323.70859375 332.4609375C1349.0357421875 332.4609375 1369.1333984375 317.7978515625 1373.2349609375 296.572265625H1349.0357421875C1346.062109375 305.80078125 1337.3462890625 312.0556640625 1324.323828125 312.0556640625C1306.8921875 312.0556640625 1296.843359375 300.263671875 1296.228125 282.626953125H1374.56796875V275.5517578125C1374.56796875 242.3291015625 1353.855078125 219.2578125 1322.683203125 219.2578125C1292.331640625 219.2578125 1270.9009765625 243.046875 1270.9009765625 275.9619140625C1270.9009765625 308.7744140625 1291.2037109375 332.4609375 1323.70859375 332.4609375ZM1296.433203125 264.78515625C1298.1763671875 249.3017578125 1308.12265625 239.765625 1323.093359375 239.765625C1338.0640625 239.765625 1348.112890625 249.3017578125 1349.753515625 264.78515625Z" fill="var(--logo-accent)"/><g transform="translate(1341.18,122.55) scale(0.4965)" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M112,92 C150,105 180,125 205,138 C260,130 310,130 355,128 C385,100 410,75 432,58 C440,110 442,170 440,225 C436,280 402,328 355,380 C330,408 310,424 294,424 C276,424 254,406 230,382 C182,332 140,285 132,225 C126,170 114,130 112,92 Z" stroke="currentColor" stroke-width="44"/><path transform="translate(294,285) scale(1.5) translate(-298,-342)" d="M298,336 C290,300 240,294 238,326 C237,342 252,358 298,404 C344,358 359,342 358,326 C356,294 306,300 298,336 Z" fill="var(--logo-accent)" stroke="var(--logo-accent)" stroke-width="6"/></g></svg></a>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <h1>Student by day, shipping code by night</h1>
+    <p class="lede">I study computer science in Dublin and work part-time alongside it, so I'm used to early starts, busy shifts and turning up reliably.</p>
+  </div>
+</header>
+
+<main>
+  <section class="block">
+    <div class="wrap">
+      <div class="grid two">
+        <div class="prose" style="gap:16px">
+          <h2>What I'm looking for</h2>
+          <p>A junior developer, DevOps or graduate role where I can work on real systems with a team that reviews code and ships often.</p>
+          <p>I like the whole path of a feature: writing the requirements, drawing the architecture, building the service, testing it and getting it running in a container in the cloud. When something breaks I'd rather find the actual cause than patch the symptom.</p>
+        </div>
+        <div>
+          <h2 style="font-size:1.8rem; margin-bottom:22px">Path so far</h2>
+          <ol class="timeline">
+            <li><p class="when">Web foundations</p><h3>Travel Explorer on GitHub Pages</h3><p>First multi-page site, built with HTML and CSS and deployed from a Git repo.</p></li>
+            <li><p class="when">Software architecture</p><h3>Requirements, UML and C4</h3><p>Designing systems before building them, and choosing between MVC and microservices.</p></li>
+            <li><p class="when">IT security</p><h3>Threat modelling and tooling</h3><p>STRIDE, DREAD, the CIA triad, cryptography basics, Wireshark, Splunk and Kali Linux.</p></li>
+            <li><p class="when">Full stack</p><h3>Homie</h3><p>A Spring Boot app with security, scheduled jobs, email and a cloud database, deployed with Docker.</p></li>
+            <li><p class="when">Next</p><h3>CI/CD and DevOps</h3><p>Automated pipelines, container orchestration and monitoring.</p></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="homie.html">Homie</a></li><li><a href="projects.html">IT Job Hunt Tracker</a></li><li><a href="https://momohein.github.io/Week9-Github-Demo/" target="_blank" rel="noopener">Travel Explorer</a></li></ul></div>
+      <div><h4>Elsewhere</h4><ul><li><a href="https://github.com/momohein" target="_blank" rel="noopener">GitHub</a></li><li><a href="contact.html">LinkedIn (add link)</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>momohein21@gmail.com</li><li>Dublin, Ireland</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Momo Hein</span><span>Hand-built with HTML &amp; CSS</span></div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
